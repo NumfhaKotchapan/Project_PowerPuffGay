@@ -1,0 +1,490 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/* General Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff; /* White background */
+  color: #333; /* Dark text for readability */
+  overflow-x: hidden;
+}
+
+.container {
+  /*display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;*/
+  flex-direction: column; /* Switch child layout to column */
+  align-items: flex-start; /* Adjust alignment */
+  gap: 20px;
+}
+
+#back-btn {
+  position: fixed; /* ทำให้ปุ่มอยู่ในตำแหน่งคงที่ */
+  top: 20px; /* ระยะห่างจากขอบบน */
+  left: 20px; /* ระยะห่างจากขอบซ้าย */
+  z-index: 1000; /* เพื่อให้แน่ใจว่าปุ่มอยู่บนสุดเหนือวัตถุอื่น */
+  background-color: #333; /* Black background */
+  border: none;
+  font-size: 24px;
+  color: #fff; /* White arrow */
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#back-btn:hover {
+  background-color: #555; /* Dark grey hover effect */
+  transform: scale(1.1);
+}
+
+#back-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(72, 133, 255, 0.6);
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  gap: 20px;
+}
+
+.title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+  padding-top: 80px; /* เผื่อพื้นที่สำหรับ back-btn และ profile-btn */
+}
+
+.reservation-form {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-input {
+  width: 100%; /* Ensures the input fills the container */
+  max-width: 100%; /* Prevents overflow */
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box; /* Includes padding and border in width calculation */
+}
+
+.form-btn {
+  width: 100%;
+  padding: 10px;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.form-btn:hover {
+  background: #555; /* Dark grey on hover */
+}
+
+.room-options {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+
+  margin-bottom: 50px; /* Adjust the spacing as needed */
+  
+}
+
+.room-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  width: calc(50% - 20px);
+  max-width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.room-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.room-card .room-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.room-card .room-description {
+  font-size: 14px;
+  color: #777; /* Lighter text color */
+  margin-bottom: 20px;
+}
+
+.room-card .action-btn {
+  background-color: #007bff; /* Blue background */
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.room-card .action-btn:hover {
+  background-color: #0056b3; /* Darker blue */
+}
+
+/* Container สำหรับสิ่งอำนวยความสะดวก */
+.facilities-container {
+  display: flex;
+  flex-wrap: wrap; /* อนุญาตให้ขึ้นบรรทัดใหม่ถ้าขนาดหน้าจอเล็ก */
+  gap: 10px; /* เว้นระยะห่างระหว่างรายการ */
+  justify-content: space-between; /* จัดการเว้นช่องว่างระหว่างรายการ */
+  padding: 10px;
+}
+
+/* แต่ละรายการสิ่งอำนวยความสะดวก */
+.facility-item {
+  display: flex;
+  align-items: center; /* จัดภาพและข้อความให้อยู่ในแนวเดียวกัน */
+  flex: 1 1 calc(50% - 10px); /* ขยายให้พื้นที่มากขึ้น โดยใช้ครึ่งหนึ่งของหน้าจอ */
+  min-width: 200px; /* เพิ่มความกว้างขั้นต่ำ */
+  max-width: 300px; /* ขยายความกว้างสูงสุด */
+  padding: 15px; /* เพิ่มพื้นที่ภายในกล่อง */
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  
+}
+
+/* ข้อความ */
+.facility-item span {
+  font-size: 14px;
+  color: #333;
+}
+
+
+
+.profile-widget {
+  position: fixed; /* เปลี่ยนจาก absolute เป็น fixed */
+  top: 20px; /* ระยะห่างจากขอบบน */
+  right: 20px; /* ระยะห่างจากขอบขวา */
+  z-index: 1000; /* ทำให้ปุ่มอยู่เหนือวัตถุอื่น */
+}
+
+.profile-btn {
+  background-color: #333; /* Black background */
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.profile-btn:hover {
+  background-color: #555; /* Darker grey */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1); /* เพิ่มเอฟเฟกต์ขยายเมื่อ hover */
+}
+
+.profile-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(72, 133, 255, 0.6);
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+#reservation-status-container {
+  /*background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 100px;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;*/
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 0; /* Remove margin if gap is handled by .main-content */
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto; /* Centers horizontally */
+  
+}
+
+#reservation-status-container p {
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
+}
+
+#cancel-booking-btn {
+  display: none;
+  margin-top: 15px;
+  padding: 12px;
+  background-color: #dc3545; /* Red background */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#cancel-booking-btn:hover {
+  background-color: #c82333;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  text-align: left;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.modal-content label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 8px;
+}
+
+.modal-content button:hover {
+  background-color: #555;
+}
+
+/* Cancellation Modal Enhancements */
+#cancellation-modal .modal-content {
+  background-color: #fef9f9;
+}
+
+#confirm-cancel-btn {
+  background-color: #28a745; /* Green background */
+}
+
+#confirm-cancel-btn:hover {
+  background-color: #218838;
+}
+
+#cancel-cancel-btn {
+  background-color: #dc3545; /* Red background */
+}
+
+#cancel-cancel-btn:hover {
+  background-color: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container {
+      flex-direction: column;
+      align-items: center; /* Centers content within the container */
+      gap: 20px;
+  }
+
+  .room-card {
+      width: 48%; /* Allows two cards in a row for medium screens */
+      margin: 10px 1%;
+  }
+
+  .modal-content {
+      width: 80%; /* Fits modal content well on smaller laptop screens */
+  }
+
+  #back-btn {
+    top: 30px; /* เพิ่มระยะห่างขอบบนสำหรับหน้าจอใหญ่ */
+    left: 30px; /* เพิ่มระยะห่างขอบซ้าย */
+    font-size: 26px; /* ขยายขนาดฟอนต์ */
+    padding: 14px; /* เพิ่ม padding */
+  }
+
+  .profile-widget {
+    top: 30px; /* เพิ่มระยะห่างขอบบน */
+    right: 30px; /* เพิ่มระยะห่างขอบขวา */
+  }
+
+  .profile-btn {
+    width: 70px; /* เพิ่มขนาดปุ่ม */
+    height: 70px;
+    padding: 18px; /* เพิ่ม padding */
+  }
+
+  .profile-image {
+    width: 50px; /* เพิ่มขนาดรูปภาพ */
+    height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .room-card {
+    width: 100%; /* Stacks room cards */
+    margin: 10px 0;
+  }
+
+  .reservation-form,
+  #reservation-status-container {
+    max-width: 100%; /* Full width for smaller devices */
+  }
+
+  .modal-content {
+    width: 90%; /* Slightly smaller modal content */
+    padding: 15px; /* Adjust modal padding */
+  }
+
+  #back-btn {
+    top: 15px; /* ลดระยะห่างขอบบนสำหรับหน้าจอเล็ก */
+    left: 15px; /* ลดระยะห่างขอบซ้าย */
+    font-size: 20px; /* ลดขนาดปุ่ม */
+    padding: 10px; /* ลด padding เพื่อให้ปุ่มเล็กลง */
+  }
+
+  .profile-widget {
+    top: 15px; /* ลดระยะห่างจากขอบบน */
+    right: 15px; /* ลดระยะห่างจากขอบขวา */
+  }
+
+  .profile-btn {
+    width: 50px; /* ลดขนาดความกว้างปุ่ม */
+    height: 50px; /* ลดขนาดความสูงปุ่ม */
+    padding: 12px; /* ลด padding */
+  }
+
+  .profile-image {
+    width: 30px; /* ลดขนาดรูปภาพ */
+    height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+      font-size: 13px; /* Slightly smaller font for compact screens */
+  }
+
+  .room-card {
+      width: 100%;
+      padding: 10px; /* Minimal padding for smaller screens */
+  }
+
+  .profile-btn {
+      width: 50px; /* Adjust button size */
+      height: 50px;
+      padding: 10px;
+  }
+
+  .modal-content {
+      width: 90%; /* Full-width modal */
+      max-height: 80vh; /* Allow scrolling if content exceeds screen */
+      overflow-y: auto;
+  }
+
+  #back-btn {
+    top: 10px; /* ลดระยะห่างขอบบน */
+    left: 10px; /* ลดระยะห่างขอบซ้าย */
+    font-size: 18px; /* ลดขนาดฟอนต์ */
+    padding: 8px; /* ลด padding */
+  }
+
+  .profile-widget {
+    top: 10px; /* ลดระยะห่างขอบบน */
+    right: 10px; /* ลดระยะห่างขอบขวา */
+  }
+
+  .profile-btn {
+    width: 45px; /* ขนาดปุ่มเล็กลง */
+    height: 45px;
+    padding: 10px; /* ลด padding */
+  }
+
+  .profile-image {
+    width: 25px; /* ลดขนาดรูปภาพ */
+    height: 25px;
+  }
+}

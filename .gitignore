@@ -1,0 +1,74 @@
+# Node.js modules
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Dependency directories
+bower_components/
+jspm_packages/
+
+# Build output
+dist/
+build/
+out/
+.tmp/
+coverage/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.orig
+*.patch
+
+# Compiled asset maps
+*.css.map
+*.js.map
+
+# Minified files
+*.min.js
+*.min.css
+
+# Cache and lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Static files (optional, if dynamically generated)
+public/assets/
+
+# Testing output
+*.test.js
+*.test.ts
+coverage/
+jest-cache/
+jest-output/
+
+# Framework-specific ignores
+.next/          # Next.js
+.nuxt/          # Nuxt.js
+.svelte-kit/    # SvelteKit
+.pnpm-debug.log # PNPM
+
+# Allow only specific CSS files
+*.css                # Ignore all CSS files
+!frontend/assets/css/*.css  # Allow CSS files in the specific directory
